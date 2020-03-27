@@ -24,7 +24,23 @@
       },
       "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/index.html?%STORAGEACCOUNTSAS%"
     },
-    "SpaDeepLinks": {
+    "assets": {
+      "disabled": false,
+      "matchCondition": {
+        "methods": [ "GET" ],
+        "route": "/assets/{*path}"
+      },
+      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/assets/{path}?%STORAGEACCOUNTSAS%"
+    },
+    "files": {
+      "disabled": false,
+      "matchCondition": {
+        "route": "/{filename}.{ext}",
+        "methods": [ "GET" ]
+      },
+      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/{filename}.{ext}?%STORAGEACCOUNTSAS%"
+    },
+    "SPA deep links": {
       "disabled": false,
       "debug": true,
       "matchCondition": {
