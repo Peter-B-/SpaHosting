@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "api": {
+      "matchCondition": {
+        "route": "/api/{*url}",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "PATCH",
+          "HEAD",
+          "OPTIONS"
+        ]
+      },
+      "backendUri": "https://localhost/api/{url}"
+    },
+    "Root": {
+      "debug": true,
+      "matchCondition": {
+        "methods": [ "GET" ],
+        "route": "/"
+      },
+      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/index.html?%STORAGEACCOUNTSAS%"
+    },
+    "SpaDeepLinks": {
+      "disabled": false,
+      "debug": true,
+      "matchCondition": {
+        "methods": [ "GET" ],
+        "route": "{*path}"
+      },
+      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/{path}?%STORAGEACCOUNTSAS%"
+    }
+  }
+}
