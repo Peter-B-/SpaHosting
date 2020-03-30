@@ -16,6 +16,15 @@
       },
       "backendUri": "https://localhost/api/{url}"
     },
+    "api with route parameter": {
+      "matchCondition": {
+        "route": "/api/users/{userId}/cars",
+        "methods": [
+          "GET"
+        ]
+      },
+      "backendUri": "https://localhost/api/users/{userId}/cars"
+    },
     "Root": {
       "debug": true,
       "matchCondition": {
