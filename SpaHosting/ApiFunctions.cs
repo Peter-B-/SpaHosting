@@ -27,8 +27,8 @@ namespace SpaHosting
             );
         }
 
-        [FunctionName(nameof(GetUsersCars))]
-        public static async Task<IActionResult> GetUsersCars(
+        [FunctionName(nameof(GetUsersCars_Route))]
+        public static async Task<IActionResult> GetUsersCars_Route(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "users/{userId}/cars")]
             HttpRequest req,
             string userId,
@@ -36,5 +36,17 @@ namespace SpaHosting
         {
             return new OkObjectResult(new Car {UserId = userId, Brand = "Faraday"});
         }
+
+        [FunctionName(nameof(GetUsersCars_Query))]
+        public static async Task<IActionResult> GetUsersCars_Query(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "users/cars")]
+            HttpRequest req,
+            ILogger log)
+        {
+            var userId = req.Query["userId"].FirstOrDefault();
+
+            return new OkObjectResult(new Car { UserId = userId, Brand = "Faraday" });
+        }
+
     }
 }
