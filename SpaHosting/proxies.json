@@ -4,59 +4,17 @@
     "api": {
       "matchCondition": {
         "route": "/api/{*url}",
-        "methods": [
-          "GET",
-          "POST",
-          "PUT",
-          "DELETE",
-          "PATCH",
-          "HEAD",
-          "OPTIONS"
-        ]
+        "methods": ["GET"]
       },
       "backendUri": "https://localhost/api/{url}"
     },
     "api with route parameter": {
+      "disabled": true,
       "matchCondition": {
         "route": "/api/users/{userId}/cars",
-        "methods": [
-          "GET"
-        ]
+        "methods": ["GET"]
       },
       "backendUri": "https://localhost/api/users/{userId}/cars"
-    },
-    "Root": {
-      "debug": true,
-      "matchCondition": {
-        "methods": [ "GET" ],
-        "route": "/"
-      },
-      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/index.html?%STORAGEACCOUNTSAS%"
-    },
-    "assets": {
-      "disabled": false,
-      "matchCondition": {
-        "methods": [ "GET" ],
-        "route": "/assets/{*path}"
-      },
-      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/assets/{path}?%STORAGEACCOUNTSAS%"
-    },
-    "files": {
-      "disabled": false,
-      "matchCondition": {
-        "route": "/{filename}.{ext}",
-        "methods": [ "GET" ]
-      },
-      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/{filename}.{ext}?%STORAGEACCOUNTSAS%"
-    },
-    "SPA deep links": {
-      "disabled": false,
-      "debug": true,
-      "matchCondition": {
-        "methods": [ "GET" ],
-        "route": "{*path}"
-      },
-      "backendUri": "https://%STORAGEACCOUNTNAME%.blob.core.windows.net/www/{path}?%STORAGEACCOUNTSAS%"
     }
   }
 }

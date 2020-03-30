@@ -12,23 +12,8 @@ namespace SpaHosting
 {
     public static class ApiFunctions
     {
-        [FunctionName(nameof(GetUsers))]
-        public static async Task<IActionResult> GetUsers(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "users")]
-            HttpRequest req,
-            ILogger log)
-        {
-            return new OkObjectResult(
-                new[]
-                {
-                    new User {UserId = "hans", Name = "Hans Dampf"},
-                    new User {UserId = "franz", Name = "Franz Nudel"}
-                }
-            );
-        }
-
-        [FunctionName(nameof(GetUsersCars_Route))]
-        public static async Task<IActionResult> GetUsersCars_Route(
+        [FunctionName(nameof(GetUsersCars))]
+        public static async Task<IActionResult> GetUsersCars(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "users/{userId}/cars")]
             HttpRequest req,
             string userId,
@@ -36,17 +21,5 @@ namespace SpaHosting
         {
             return new OkObjectResult(new Car {UserId = userId, Brand = "Faraday"});
         }
-
-        [FunctionName(nameof(GetUsersCars_Query))]
-        public static async Task<IActionResult> GetUsersCars_Query(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "users/cars")]
-            HttpRequest req,
-            ILogger log)
-        {
-            var userId = req.Query["userId"].FirstOrDefault();
-
-            return new OkObjectResult(new Car { UserId = userId, Brand = "Faraday" });
-        }
-
     }
 }
